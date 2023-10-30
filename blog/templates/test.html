@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Пример смены темы</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/' + current_theme + '.css') }}">
+</head>
+<body>
+    <h1>Пример смены темы</h1>
+    <a href="{{ url_for('light_theme') }}">Светлая тема</a>
+    <a href="{{ url_for('dark_theme') }}">Тёмная тема</a>
+</body>
+</html>
