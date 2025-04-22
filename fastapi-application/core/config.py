@@ -3,8 +3,12 @@ from pydantic import BaseModel,PostgresDsn
 class RunConfig(BaseModel):
     host: str = "0.0.0.0"
     port: int = 8000
+class ApiV1Prefix(BaseModel):
+    prefix: str = "/v1"
+    users : str = "/users"
 class ApiPrefix(BaseModel):
     prefix: str = "/api"
+    v1: ApiV1Prefix = ApiV1Prefix()
 class DatabaseConfig(BaseModel):
     # host: str = "localhost"
     # port: int = 5432
@@ -20,8 +24,6 @@ class DatabaseConfig(BaseModel):
         "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
         "pk": "pk_%(table_name)s",
     }
-
-
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=(".env.template",".env"),
