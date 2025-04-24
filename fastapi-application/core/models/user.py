@@ -8,4 +8,9 @@ class User(Base):
     username: Mapped[str] = mapped_column(unique=True)
     foo:Mapped[int]
     bar:Mapped[int]
+    email: Mapped[str] = mapped_column(unique=True)
     __table_args__ = (UniqueConstraint("foo","bar"),)
+    def __repr__(self):
+        return f"<User(username={self.username})>"
+    def __str__(self):
+        return self.username

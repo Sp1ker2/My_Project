@@ -1,8 +1,9 @@
-from pydantic import BaseModel,ConfigDict
+from pydantic import BaseModel, ConfigDict, EmailStr
 
 
 class UserBase(BaseModel):
     username:str
+    email:EmailStr
     foo: int
     bar:int
 class UserCreate(UserBase):

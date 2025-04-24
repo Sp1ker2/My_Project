@@ -7,7 +7,7 @@ from sqlalchemy.exc import IntegrityError
 
 from core.models import User
 from core.schemas.user import UserCreate
-
+import re
 
 async def get_all_users(session: AsyncSession) -> Sequence[User]:
     stmt = select(User).order_by(User.id)
@@ -19,10 +19,16 @@ async def create_user(user_create: UserCreate, session: AsyncSession):
     new_user = User(**user_create.model_dump())
 
     session.add(new_user)
+
     try:
         await session.commit()
         await session.refresh(new_user)
         return new_user
-    except IntegrityError:
+    except IntegrityError as e:
         await session.rollback()
-        raise HTTPException(status_code=400, detail="Username already exists")
+        if 'email' in str(e.orig):
+            raise HTTPException(status_code=400, detail="Email already exists")
+        elif 'username' in str(e.orig):
+            raise HTTPException(status_code=400, detail="Username already exists")
+        else:
+            raise HTTPException(status_code=400, detail="Integrity error")
