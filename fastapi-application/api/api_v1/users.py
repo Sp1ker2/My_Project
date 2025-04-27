@@ -19,11 +19,20 @@ async def get_users(session: Annotated[AsyncSession] = Depends(db_helper.session
 @router.post("",
              response_model=UserRead,
              responses={404: {"description": "Not found"}})
-async def create_user(  user_create: UserCreate,
-        session: Annotated[AsyncSession]
-        = Depends(db_helper.session_getter)
-       ):
+async def create_user(user_create: UserCreate,
+                      session: Annotated[AsyncSession]
+                      = Depends(db_helper.session_getter)
+                      ):
     user = await user_crud.create_user(
         session=session,
         user_create=user_create)
     return user
+
+
+# @router.post("/", response_model=UserRead)
+# async def create_user(
+#         user_create: UserCreate,
+#         session: Annotated[AsyncSession] = Depends(db_helper.session_getter)
+# ):
+#     user = await user_crud.create_user(session=session, user_create=user_create)
+#     return user

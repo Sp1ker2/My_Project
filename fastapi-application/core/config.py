@@ -1,11 +1,19 @@
 from pydantic_settings import BaseSettings,SettingsConfigDict
 from pydantic import BaseModel,PostgresDsn
+import os
+from datetime import timedelta
+
+JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "super-secret-key")
+JWT_ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 60  # 1 час
+
 class RunConfig(BaseModel):
     host: str = "0.0.0.0"
     port: int = 8000
 class ApiV1Prefix(BaseModel):
     prefix: str = "/v1"
     users : str = "/users"
+    posts : str = "/posts"
 class ApiPrefix(BaseModel):
     prefix: str = "/api"
     v1: ApiV1Prefix = ApiV1Prefix()
