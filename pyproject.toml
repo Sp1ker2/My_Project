@@ -10,7 +10,12 @@ sqlalchemy = {extras = ["asyncio"], version = "^2.0.40"}
 asyncpg = "^0.30.0"
 a = "^1.0"
 alembic = "^1.15.2"
+orjson = "^3.10.16"
+pyjwt = "^2.10.1"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+bcrypt = "3.2.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^25.1.0"
+passlib = "^1.7.4"
 

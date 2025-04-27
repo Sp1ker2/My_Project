@@ -1,8 +1,0 @@
-services:
-  web:
-    build: .
-    environment:
-      USE_SQLITE: "true"
-    depends_on: []
-    ports:
-      - "8000:8000"
