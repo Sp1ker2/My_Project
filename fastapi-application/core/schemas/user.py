@@ -21,3 +21,6 @@ class UserRead(UserBase):
     id: int
 
 
+class UserLogin(BaseModel):
+    username: str
+    password: str

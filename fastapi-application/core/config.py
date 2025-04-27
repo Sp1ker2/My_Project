@@ -14,6 +14,7 @@ class ApiV1Prefix(BaseModel):
     prefix: str = "/v1"
     users : str = "/users"
     posts : str = "/posts"
+    auth : str = "/auth"
 class ApiPrefix(BaseModel):
     prefix: str = "/api"
     v1: ApiV1Prefix = ApiV1Prefix()
@@ -40,6 +41,7 @@ class Settings(BaseSettings):
         env_prefix="APP_CONFIG__",
 
         )
+
     # database_config = DatabaseConfig()
     run:RunConfig = RunConfig()
     # prefix
