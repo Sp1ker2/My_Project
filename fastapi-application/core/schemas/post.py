@@ -9,7 +9,7 @@ class PostBase(BaseModel):
 class PostCreate(BaseModel):
     title: str
     content: str
-    user_id: int
+    # user_id: int
 
 class PostRead(PostBase):
     id: int

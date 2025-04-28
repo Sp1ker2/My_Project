@@ -27,17 +27,20 @@
 
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
+
 from core.models import Post
 from core.schemas.post import PostCreate
+
 
 async def get_all_posts(session: AsyncSession):
     stmt = select(Post).order_by(Post.id)
     result = await session.scalars(stmt)
     return result.all()
 
-async def create_post(post_create: PostCreate, session: AsyncSession):
+
+async def create_post(post_create: PostCreate, session: AsyncSession, current_user):
     post_data = post_create.model_dump()
-    post_data['owner_id'] = post_data.pop('user_id')
+    post_data['owner_id'] = current_user.id  # беремо id з поточного користувача
 
     new_post = Post(**post_data)
 

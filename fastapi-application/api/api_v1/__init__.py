@@ -18,3 +18,6 @@ router = APIRouter()
 router.include_router(router_users)
 router.include_router(router_auth)
 router.include_router(router_posts)
+
+
+

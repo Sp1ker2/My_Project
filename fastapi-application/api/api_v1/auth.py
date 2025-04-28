@@ -15,7 +15,12 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 async def register_user(user_create: UserCreate, session: AsyncSession = Depends(db_helper.session_getter)):
     return await create_user(user_create, session)
 
+from fastapi import Form
+
 @router.post("/login")
-async def login(user_login: UserLogin, session: AsyncSession = Depends(db_helper.session_getter)):
-    return await login_user(user_login.username, user_login.password, session)
-    # return await login_user("Вы авторизованы ",user_login.username,session)
+async def login(
+    username: str = Form(...),
+    password: str = Form(...),
+    session: AsyncSession = Depends(db_helper.session_getter),
+):
+    return await login_user(username, password, session)
