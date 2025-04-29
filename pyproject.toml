@@ -16,6 +16,7 @@ passlib = {extras = ["bcrypt"], version = "^1.7.4"}
 bcrypt = "3.2.0"
 jose = "^1.0.0"
 python-multipart = "^0.0.20"
+fastapi-admin = "^1.0.4"
 
 [tool.poetry.group.dev.dependencies]
 black = "^25.1.0"
