@@ -1,4 +1,6 @@
-from sqlalchemy import UniqueConstraint, String
+from datetime import datetime
+
+from sqlalchemy import UniqueConstraint, String,DateTime,Boolean
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
@@ -11,6 +13,9 @@ class User(ipkm, Base):
     username: Mapped[str] = mapped_column(unique=True)
     email: Mapped[str] = mapped_column(unique=True)
     hashed_password: Mapped[str] = mapped_column(String(200), nullable=False)
+
+    is_admin: Mapped[bool] = mapped_column(Boolean, default=False)
+    is_banned_until: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
 
     posts = relationship("Post", back_populates="owner")
 

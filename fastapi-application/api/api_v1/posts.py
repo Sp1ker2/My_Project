@@ -5,9 +5,10 @@ from typing import Annotated
 from core.models.db_helper import db_helper
 from core.schemas.post import PostRead, PostCreate
 from crud import posts as posts_crud
-from core.models import User
 from core.security import get_current_user
-
+from datetime import datetime
+from fastapi import Depends, HTTPException
+from core.models.user import User
 router = APIRouter(tags=["posts"])
 
 @router.get("/posts", response_model=list[PostRead], responses={404: {"description": "Not found"}})
