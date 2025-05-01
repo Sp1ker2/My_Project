@@ -11,8 +11,16 @@ class PostCreate(BaseModel):
     content: str
     # user_id: int
 
+class PostAuthor(BaseModel):
+    username: str
+
+    class Config:
+        from_attributes = True
 class PostRead(PostBase):
     id: int
-    model_config = ConfigDict(
+    title: str
+    content: str
+    owner: PostAuthor
+model_config = ConfigDict(
         from_attributes=True
     )

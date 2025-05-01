@@ -32,8 +32,10 @@ from core.models import Post
 from core.schemas.post import PostCreate
 
 
+from sqlalchemy.orm import joinedload
+
 async def get_all_posts(session: AsyncSession):
-    stmt = select(Post).order_by(Post.id)
+    stmt = select(Post).options(joinedload(Post.owner)).order_by(Post.id)
     result = await session.scalars(stmt)
     return result.all()
 
