@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import UniqueConstraint, String,DateTime,Boolean
+from sqlalchemy import UniqueConstraint, String, DateTime, Boolean, Integer
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
@@ -16,6 +16,8 @@ class User(ipkm, Base):
 
     is_admin: Mapped[bool] = mapped_column(Boolean, default=False)
     is_banned_until: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    ban_count: Mapped[int] = mapped_column(Integer, default=0)  # Добавляем поле для подсчёта банов
+
 
     posts = relationship("Post", back_populates="owner")
 

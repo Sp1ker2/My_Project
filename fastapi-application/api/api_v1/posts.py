@@ -16,10 +16,14 @@ async def get_posts(session: AsyncSession = Depends(db_helper.session_getter)):
     posts = await posts_crud.get_all_posts(session=session)
     return posts
 
+
 @router.post("/posts", response_model=PostRead)
 async def create_post(
-    post_create: PostCreate,
-    session: AsyncSession = Depends(db_helper.session_getter),
-    current_user: User = Depends(get_current_user)
+        post_create: PostCreate,
+        session: AsyncSession = Depends(db_helper.session_getter),
+        current_user: User = Depends(get_current_user)
 ):
+    if current_user.is_banned_until and current_user.is_banned_until > datetime.now():
+        raise HTTPException(status_code=403, detail="User is banned and cannot create posts")
+
     return await posts_crud.create_post(post_create=post_create, session=session, current_user=current_user)

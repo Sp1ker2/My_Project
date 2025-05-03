@@ -13,7 +13,6 @@ async def delete_post(
     current_user: User = Depends(get_current_user),
     session: AsyncSession = Depends(db_helper.session_getter)
 ):
-    # Разрешено удалять посты только "Em Tru" или админу
     if current_user.username != "Em Tru" and not current_user.is_admin:
         raise HTTPException(status_code=403, detail="You do not have permission to delete posts")
 
