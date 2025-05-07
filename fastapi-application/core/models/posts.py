@@ -13,6 +13,9 @@ class Post(Base):
     owner_id = Column(Integer, ForeignKey("users.id"))
 
     owner = relationship("User", back_populates="posts")
+    likes = relationship("Likes", backref="post", cascade="all, delete-orphan")
 
-    def __repr__(self):
+
+
+def __repr__(self):
         return f"<Post(title={self.title}, owner_id={self.owner_id})>"

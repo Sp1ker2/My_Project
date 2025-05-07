@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация заказа</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .form-container {
+            background-color: #fff;
+            width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+        }
+        .form-container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .submit-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Регистрация заказа</h2>
+    <form id="orderForm" action="submit_order.php" method="POST">
+        <div class="form-group">
+            <label for="product">Название товара</label>
+            <input type="text" id="product" name="product" readonly>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Количество</label>
+            <input type="number" id="quantity" name="quantity" min="1" required>
+        </div>
+        <div class="form-group">
+            <label for="name">Имя</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Электронная почта</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Телефон</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Адрес</label>
+            <input type="text" id="address" name="address" required>
+        </div>
+        <!-- Выпадающее меню для выбора цвета шапки -->
+        <div class="form-group">
+            <label for="cap_color">Цвет шапки</label>
+            <select id="cap_color" name="cap_color" required>
+                <option value="">Выберите цвет</option>
+                <option value="Синий">Синий</option>
+                <option value="Красный">Красный</option>
+                <option value="Желтый">Желтый</option>
+            </select>
+        </div>
+        <button type="submit" class="submit-button">Подтвердить заказ</button>
+    </form>
+</div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const product = urlParams.get('product');
+    if (product) {
+        document.getElementById('product').value = product;
+    }
+</script>
+
+</body>
+</html>

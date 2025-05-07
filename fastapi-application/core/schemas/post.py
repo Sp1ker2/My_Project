@@ -6,21 +6,17 @@ class PostBase(BaseModel):
     content: str
 
 
-class PostCreate(BaseModel):
-    title: str
-    content: str
-    # user_id: int
+class PostCreate(PostBase):
+    pass
+
 
 class PostAuthor(BaseModel):
     username: str
+    model_config = ConfigDict(from_attributes=True)
 
-    class Config:
-        from_attributes = True
+
 class PostRead(PostBase):
     id: int
-    title: str
-    content: str
+    like: int = 0
     owner: PostAuthor
-model_config = ConfigDict(
-        from_attributes=True
-    )
+    model_config = ConfigDict(from_attributes=True)

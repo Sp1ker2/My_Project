@@ -18,6 +18,7 @@ jose = "^1.0.0"
 python-multipart = "^0.0.20"
 fastapi-admin = "^1.0.4"
 redis = "^5.2.1"
+python-jose = "^3.4.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^25.1.0"
