@@ -58,9 +58,21 @@ HTML-проект (сайт-магазин на чистом HTML/CSS/JS), вк�
 ### `VooDoo/`, `my/`, `kubik/`
 Разрозненные модули и скрипты для разных целей (парсеры, алгоритмы, ML и пр.)
 
-## 🚀 Запуск
+# 📌 CRM Application
 
-Пример для FastAPI:
-```bash
-cd FAST-USERS
-uvicorn main:app --reload
+Лёгкая CRM-система на **FastAPI** с авторизацией, клиентами и пользователями.  
+Использует **PostgreSQL** в качестве базы данных, **Alembic** для миграций и запускается через **Docker Compose**.
+
+---
+
+## ⚙️ Технологии
+
+- ⚡ [FastAPI](https://fastapi.tiangolo.com/) — веб-фреймворк  
+- 🐘 [PostgreSQL](https://www.postgresql.org/) — база данных  
+- 🛠 [SQLAlchemy](https://www.sqlalchemy.org/) — ORM  
+- 🔄 [Alembic](https://alembic.sqlalchemy.org/) — миграции БД  
+- 📦 [Poetry](https://python-poetry.org/) — менеджер зависимостей    
+
+---
+
+
